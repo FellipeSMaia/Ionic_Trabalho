@@ -27,7 +27,6 @@ export class CarrinhoPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    // Atualiza o carrinho sempre que a página for acessada
     this.carregarCarrinho();
   }
 
@@ -43,7 +42,6 @@ export class CarrinhoPage implements OnInit {
     }
   }
 
-  // Getters para cálculos do resumo
   get subtotalCarrinho(): number {
     return this.itensCarrinho.reduce((total, item) => total + item.subtotal, 0);
   }
@@ -105,10 +103,8 @@ export class CarrinhoPage implements OnInit {
     if (index >= 0 && index < this.itensCarrinho.length) {
       const item = this.itensCarrinho[index];
 
-      // Adiciona mais 1 unidade do produto
       this.carrinhoService.adicionarProduto(item.produto, 1);
 
-      // Recarrega os itens do carrinho
       this.carregarCarrinho();
 
       this.mostrarToast('Quantidade atualizada', 'success');
@@ -120,19 +116,16 @@ export class CarrinhoPage implements OnInit {
       const item = this.itensCarrinho[index];
 
       if (item.quantidade > 1) {
-        // Remove o produto e adiciona com quantidade - 1
         this.carrinhoService.removerProduto(item.produto.codigo);
         this.carrinhoService.adicionarProduto(
           item.produto,
           item.quantidade - 1
         );
 
-        // Recarrega os itens do carrinho
         this.carregarCarrinho();
 
         this.mostrarToast('Quantidade atualizada', 'success');
       } else {
-        // Se quantidade for 1, pergunta se quer remover
         this.confirmarRemocaoItem(index);
       }
     }
@@ -152,11 +145,9 @@ export class CarrinhoPage implements OnInit {
     if (index >= 0 && index < this.itensCarrinho.length) {
       const item = this.itensCarrinho[index];
 
-      // Remove o produto atual e adiciona com a nova quantidade
       this.carrinhoService.removerProduto(item.produto.codigo);
       this.carrinhoService.adicionarProduto(item.produto, quantidade);
 
-      // Recarrega os itens do carrinho
       this.carregarCarrinho();
 
       this.mostrarToast('Quantidade atualizada', 'success');
@@ -192,10 +183,8 @@ export class CarrinhoPage implements OnInit {
     if (index >= 0 && index < this.itensCarrinho.length) {
       const item = this.itensCarrinho[index];
 
-      // Remove do serviço
       this.carrinhoService.removerProduto(item.produto.codigo);
 
-      // Recarrega os itens do carrinho
       this.carregarCarrinho();
 
       this.mostrarToast('Item removido do carrinho', 'warning');
@@ -242,13 +231,11 @@ export class CarrinhoPage implements OnInit {
     }
 
     try {
-      // Validações básicas
       if (this.subtotalCarrinho <= 0) {
         await this.mostrarToast('Valor do carrinho inválido', 'danger');
         return;
       }
 
-      // Confirma a finalização
       const alert = await this.alertController.create({
         header: 'Finalizar Compra',
         message: `Total: ${this.formatarMoeda(
@@ -280,7 +267,6 @@ export class CarrinhoPage implements OnInit {
   private async processarFinalizacao() {
     await this.mostrarToast('Processando compra...', 'primary');
 
-    // Captura os dados da compra antes de limpar o carrinho
     const dadosCompra = {
       subtotal: this.subtotalCarrinho,
       frete: this.valorFrete,
@@ -290,14 +276,11 @@ export class CarrinhoPage implements OnInit {
       numeroPedido: this.gerarNumeroPedido(),
     };
 
-    // Simula processamento
     setTimeout(async () => {
       try {
-        // Limpa o carrinho após finalizar
         this.carrinhoService.limparCarrinho();
         this.carregarCarrinho();
 
-        // Navega para página de resultado com os dados da compra
         await this.router.navigate(['/resultado'], {
           state: dadosCompra,
         });
@@ -308,7 +291,6 @@ export class CarrinhoPage implements OnInit {
     }, 2000);
   }
 
-  // Método auxiliar para gerar número do pedido
   private gerarNumeroPedido(): string {
     const timestamp = Date.now();
     const random = Math.floor(Math.random() * 1000);
@@ -320,7 +302,6 @@ export class CarrinhoPage implements OnInit {
   }
 
   verDetalheProduto(produto: any) {
-    // Navega para página de detalhes do produto
     this.router.navigate(['/produto-detalhe', produto.codigo]);
   }
 
@@ -341,7 +322,6 @@ export class CarrinhoPage implements OnInit {
     await toast.present();
   }
 
-  // Método para atualizar dados quando houver mudanças
   refresh(event: any) {
     this.carregarCarrinho();
     setTimeout(() => {

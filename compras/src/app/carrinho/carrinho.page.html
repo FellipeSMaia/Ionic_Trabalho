@@ -19,18 +19,15 @@
     </ion-toolbar>
   </ion-header>
 
-  <!-- Pull to Refresh -->
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <!-- Loading -->
   <div *ngIf="carregando" class="loading-container">
     <ion-spinner></ion-spinner>
     <p>Carregando carrinho...</p>
   </div>
 
-  <!-- Carrinho Vazio -->
   <div *ngIf="!carregando && carrinhoVazio" class="empty-cart">
     <ion-icon name="cart-outline" class="empty-icon"></ion-icon>
     <h2>Seu carrinho está vazio</h2>
@@ -41,9 +38,7 @@
     </ion-button>
   </div>
 
-  <!-- Lista de Itens -->
   <div *ngIf="!carregando && !carrinhoVazio">
-    <!-- Header com economia -->
     <ion-card *ngIf="temDesconto" class="savings-card">
       <ion-card-content>
         <div class="savings-content">
@@ -56,7 +51,6 @@
       </ion-card-content>
     </ion-card>
 
-    <!-- Lista de Produtos -->
     <ion-list>
       <ion-item-sliding *ngFor="let item of itensCarrinho; let i = index">
         <ion-item button (click)="verDetalheProduto(item.produto)">
@@ -65,7 +59,6 @@
             <h2>{{ item.produto.descricao }}</h2>
             <p class="product-details">{{ item.produto.detalhes }}</p>
             
-            <!-- Preços -->
             <div class="price-container">
               <span *ngIf="item.produto.valorNormal && item.produto.valorNormal > item.produto.valorComDesconto" 
                     class="original-price">
@@ -80,7 +73,6 @@
               </span>
             </div>
             
-            <!-- Controles de Quantidade -->
             <div class="quantity-controls" (click)="$event.stopPropagation()">
               <ion-button fill="clear" size="small" (click)="diminuirQuantidade(i)">
                 <ion-icon name="remove" slot="icon-only"></ion-icon>
@@ -99,7 +91,6 @@
           </ion-note>
         </ion-item>
 
-        <!-- Sliding Options -->
         <ion-item-options side="end">
           <ion-item-option color="danger" (click)="confirmarRemocaoItem(i)">
             <ion-icon name="trash" slot="icon-only"></ion-icon>
@@ -108,7 +99,6 @@
       </ion-item-sliding>
     </ion-list>
 
-    <!-- Resumo da Compra -->
     <ion-card class="summary-card">
       <ion-card-header>
         <ion-card-title>
@@ -144,7 +134,6 @@
       </ion-card-content>
     </ion-card>
 
-    <!-- Botões de Ação -->
     <div class="action-buttons">
       <ion-button expand="block" fill="outline" (click)="continuarComprando()">
         <ion-icon name="storefront-outline" slot="start"></ion-icon>
@@ -157,7 +146,6 @@
       </ion-button>
     </div>
 
-    <!-- Espaço extra para garantir que o conteúdo não fique atrás de elementos fixos -->
     <div style="height: 20px;"></div>
   </div>
 </ion-content>

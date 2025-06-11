@@ -1,4 +1,3 @@
-// Loading
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -16,7 +15,6 @@
   }
 }
 
-// Carrinho Vazio
 .empty-cart {
   display: flex;
   flex-direction: column;
@@ -51,7 +49,6 @@
   }
 }
 
-// Card de Economia
 .savings-card {
   margin: 16px;
   background: linear-gradient(
@@ -85,7 +82,6 @@
   }
 }
 
-// Lista de Produtos
 ion-list {
   padding: 0;
 
@@ -134,7 +130,6 @@ ion-list {
   }
 }
 
-// Preços
 .price-container {
   display: flex;
   align-items: center;
@@ -164,7 +159,6 @@ ion-list {
   }
 }
 
-// Controles de Quantidade
 .quantity-controls {
   display: flex;
   align-items: center;
@@ -189,7 +183,6 @@ ion-list {
   }
 }
 
-// Card de Resumo
 .summary-card {
   margin: 16px;
   border-radius: 12px;
@@ -250,7 +243,6 @@ ion-list {
   }
 }
 
-// Botões de Ação
 .action-buttons {
   padding: 16px;
   display: flex;
@@ -267,7 +259,6 @@ ion-list {
   }
 }
 
-// Responsividade
 @media (min-width: 768px) {
   .action-buttons {
     flex-direction: row;
@@ -278,7 +269,6 @@ ion-list {
   }
 }
 
-// Animações
 ion-item-sliding {
   ion-item {
     transition: transform 0.2s ease;
@@ -289,7 +279,6 @@ ion-item-sliding {
   }
 }
 
-// Estados dos botões
 ion-button {
   &:hover {
     transform: translateY(-1px);
@@ -297,7 +286,6 @@ ion-button {
   }
 }
 
-// Melhorias visuais para dark mode
 @media (prefers-color-scheme: dark) {
   .savings-card {
     background: linear-gradient(

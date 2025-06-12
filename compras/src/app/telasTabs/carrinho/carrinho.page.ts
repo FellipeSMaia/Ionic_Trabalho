@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController, AlertController } from '@ionic/angular';
-import { CarrinhoService } from '../services/carrinho.service';
-import { ItemCarrinho } from '../models/item-carrinho.model';
+import { CarrinhoService } from '../../services/carrinho.service';
+import { ItemCarrinho } from '../../models/item-carrinho.model';
 
 @Component({
   selector: 'app-carrinho',

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ClienteCadastroComponent } from './cliente-cadastro.component';
+import { ClienteCadastroComponent } from './cadastro.component';
 
 describe('ClienteCadastroComponent', () => {
   let component: ClienteCadastroComponent;

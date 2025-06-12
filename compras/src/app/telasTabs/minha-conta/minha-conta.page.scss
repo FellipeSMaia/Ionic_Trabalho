@@ -1,0 +1,139 @@
+.spinner-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  padding: 20px;
+}
+
+.spinner-wrapper p {
+  margin-top: 15px;
+  color: var(--ion-color-medium);
+  font-size: 14px;
+}
+
+.no-data-state {
+  text-align: center;
+  padding: 40px 20px;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.placeholder-graphic {
+  width: 80px;
+  height: 80px;
+  background-color: var(--ion-color-light);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-data-state h2 {
+  color: var(--ion-color-dark);
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.no-data-state p {
+  color: var(--ion-color-medium);
+  margin-bottom: 30px;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.register-button {
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.user-profile {
+  padding: 0 16px 20px;
+}
+
+.header-section {
+  text-align: center;
+  padding: 30px 20px;
+  background: linear-gradient(
+    135deg,
+    var(--ion-color-primary),
+    var(--ion-color-primary-shade)
+  );
+  color: white;
+  margin: 0 -16px 20px;
+}
+
+.user-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-initial {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+}
+
+.header-section h2 {
+  margin: 0 0 5px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.header-section p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 16px;
+}
+
+.info-card,
+.address-card {
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-card ion-card-title,
+.address-card ion-card-title {
+  color: var(--ion-color-dark);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info-card ion-item,
+.address-card ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+.info-card ion-label h3,
+.address-card ion-label h3 {
+  color: var(--ion-color-medium);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.info-card ion-label p,
+.address-card ion-label p {
+  color: var(--ion-color-dark);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.update-button {
+  margin-top: 20px;
+  font-weight: 600;
+  --border-radius: 8px;
+}

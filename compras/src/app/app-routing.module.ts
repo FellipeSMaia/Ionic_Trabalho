@@ -15,24 +15,26 @@ const routes: Routes = [
   {
     path: 'minha-conta',
     loadChildren: () =>
-      import('./minha-conta/minha-conta.module').then(
+      import('./telasTabs/minha-conta/minha-conta.module').then(
         (m) => m.MinhaContaPageModule
       ),
   },
   {
-    path: 'cliente-cadastro',
+    path: 'cadastro',
     loadChildren: () =>
-      import('./cliente-cadastro/cliente-cadastro.module').then(
-        (m) => m.ClienteCadastroModule
-      ),
+      import('./cadastro/cadastro.module').then((m) => m.ClienteCadastroModule),
   },
   {
     path: 'carrinho',
-    loadChildren: () => import('./carrinho/carrinho.module').then( m => m.CarrinhoPageModule)
+    loadChildren: () =>
+      import('./telasTabs/carrinho/carrinho.module').then(
+        (m) => m.CarrinhoPageModule
+      ),
   },
   {
     path: 'resultado',
-    loadChildren: () => import('./resultado/resultado.module').then( m => m.ResultadoPageModule)
+    loadChildren: () =>
+      import('./resultado/resultado.module').then((m) => m.ResultadoPageModule),
   },
 ];
 

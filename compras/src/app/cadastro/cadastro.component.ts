@@ -7,8 +7,8 @@ import { ClienteService } from '../services/cliente.service';
 @Component({
   selector: 'app-cliente-cadastro',
   standalone: false,
-  templateUrl: './cliente-cadastro.component.html',
-  styleUrls: ['./cliente-cadastro.component.scss'],
+  templateUrl: './cadastro.component.html',
+  styleUrls: ['./cadastro.component.scss'],
 })
 export class ClienteCadastroComponent implements OnInit {
   clienteForm: FormGroup;

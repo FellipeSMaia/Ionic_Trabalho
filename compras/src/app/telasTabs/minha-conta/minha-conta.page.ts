@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ClienteService, Cliente } from '../services/cliente.service';
+import { ClienteService, Cliente } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-minha-conta',

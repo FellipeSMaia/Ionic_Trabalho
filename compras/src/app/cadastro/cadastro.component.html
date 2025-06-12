@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="custom-content">
   <div *ngIf="carregando" class="loading-container">
     <ion-spinner name="circular"></ion-spinner>
     <ion-text>
@@ -21,15 +21,17 @@
     [formGroup]="clienteForm"
     (ngSubmit)="onSubmit()"
     *ngIf="!carregando"
+    class="custom-form"
   >
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Dados Pessoais</ion-card-title>
-      </ion-card-header>
-      
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="stacked">Nome Completo *</ion-label>
+    <div class="form-section">
+      <div class="section-header">
+        <h2>Dados Pessoais</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="form-group">
+        <ion-item class="custom-item">
+          <ion-label position="stacked">Nome Completo</ion-label>
           <ion-input
             type="text"
             formControlName="nome"
@@ -38,13 +40,16 @@
             [class.ion-touched]="clienteForm.get('nome')?.touched"
           ></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="isFieldInvalid('nome')">
+        <ion-text
+          color="danger"
+          *ngIf="isFieldInvalid('nome')"
+          class="error-text"
+        >
           <small>{{ getErrorMessage("nome") }}</small>
         </ion-text>
 
-        <ion-item>
-          <ion-label position="stacked">Telefone *</ion-label>
-
+        <ion-item class="custom-item">
+          <ion-label position="stacked">Telefone</ion-label>
           <ion-input
             type="tel"
             formControlName="telefone"
@@ -54,24 +59,28 @@
             [class.ion-invalid]="isFieldInvalid('telefone')"
             [class.ion-touched]="clienteForm.get('telefone')?.touched"
           ></ion-input>
-
         </ion-item>
-        <ion-text color="danger" *ngIf="isFieldInvalid('telefone')">
+        <ion-text
+          color="danger"
+          *ngIf="isFieldInvalid('telefone')"
+          class="error-text"
+        >
           <small>{{ getErrorMessage("telefone") }}</small>
         </ion-text>
-      </ion-card-content>
-    </ion-card>
+      </div>
+    </div>
 
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Endereço</ion-card-title>
-      </ion-card-header>
-      
-      <ion-card-content>
+    <div class="form-section">
+      <div class="section-header">
+        <h2>Endereço</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="form-group">
         <ion-row>
           <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">CEP *</ion-label>
+            <ion-item class="custom-item">
+              <ion-label position="stacked">CEP</ion-label>
               <ion-input
                 type="text"
                 formControlName="cep"
@@ -82,14 +91,18 @@
                 [class.ion-touched]="clienteForm.get('cep')?.touched"
               ></ion-input>
             </ion-item>
-            <ion-text color="danger" *ngIf="isFieldInvalid('cep')">
+            <ion-text
+              color="danger"
+              *ngIf="isFieldInvalid('cep')"
+              class="error-text"
+            >
               <small>{{ getErrorMessage("cep") }}</small>
             </ion-text>
           </ion-col>
 
           <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">Estado *</ion-label>
+            <ion-item class="custom-item">
+              <ion-label position="stacked">Estado</ion-label>
               <ion-select
                 formControlName="estado"
                 placeholder="Selecione"
@@ -102,12 +115,16 @@
                 <ion-select-option value="AM">Amazonas</ion-select-option>
                 <ion-select-option value="BA">Bahia</ion-select-option>
                 <ion-select-option value="CE">Ceará</ion-select-option>
-                <ion-select-option value="DF">Distrito Federal</ion-select-option>
+                <ion-select-option value="DF"
+                  >Distrito Federal</ion-select-option
+                >
                 <ion-select-option value="ES">Espírito Santo</ion-select-option>
                 <ion-select-option value="GO">Goiás</ion-select-option>
                 <ion-select-option value="MA">Maranhão</ion-select-option>
                 <ion-select-option value="MT">Mato Grosso</ion-select-option>
-                <ion-select-option value="MS">Mato Grosso do Sul</ion-select-option>
+                <ion-select-option value="MS"
+                  >Mato Grosso do Sul</ion-select-option
+                >
                 <ion-select-option value="MG">Minas Gerais</ion-select-option>
                 <ion-select-option value="PA">Pará</ion-select-option>
                 <ion-select-option value="PB">Paraíba</ion-select-option>
@@ -115,8 +132,12 @@
                 <ion-select-option value="PE">Pernambuco</ion-select-option>
                 <ion-select-option value="PI">Piauí</ion-select-option>
                 <ion-select-option value="RJ">Rio de Janeiro</ion-select-option>
-                <ion-select-option value="RN">Rio Grande do Norte</ion-select-option>
-                <ion-select-option value="RS">Rio Grande do Sul</ion-select-option>
+                <ion-select-option value="RN"
+                  >Rio Grande do Norte</ion-select-option
+                >
+                <ion-select-option value="RS"
+                  >Rio Grande do Sul</ion-select-option
+                >
                 <ion-select-option value="RO">Rondônia</ion-select-option>
                 <ion-select-option value="RR">Roraima</ion-select-option>
                 <ion-select-option value="SC">Santa Catarina</ion-select-option>
@@ -125,14 +146,18 @@
                 <ion-select-option value="TO">Tocantins</ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-text color="danger" *ngIf="isFieldInvalid('estado')">
+            <ion-text
+              color="danger"
+              *ngIf="isFieldInvalid('estado')"
+              class="error-text"
+            >
               <small>{{ getErrorMessage("estado") }}</small>
             </ion-text>
           </ion-col>
         </ion-row>
 
-        <ion-item>
-          <ion-label position="stacked">Endereço *</ion-label>
+        <ion-item class="custom-item">
+          <ion-label position="stacked">Endereço</ion-label>
           <ion-input
             type="text"
             formControlName="endereco"
@@ -141,14 +166,18 @@
             [class.ion-touched]="clienteForm.get('endereco')?.touched"
           ></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="isFieldInvalid('endereco')">
+        <ion-text
+          color="danger"
+          *ngIf="isFieldInvalid('endereco')"
+          class="error-text"
+        >
           <small>{{ getErrorMessage("endereco") }}</small>
         </ion-text>
 
         <ion-row>
           <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">Bairro *</ion-label>
+            <ion-item class="custom-item">
+              <ion-label position="stacked">Bairro</ion-label>
               <ion-input
                 type="text"
                 formControlName="bairro"
@@ -157,14 +186,18 @@
                 [class.ion-touched]="clienteForm.get('bairro')?.touched"
               ></ion-input>
             </ion-item>
-            <ion-text color="danger" *ngIf="isFieldInvalid('bairro')">
+            <ion-text
+              color="danger"
+              *ngIf="isFieldInvalid('bairro')"
+              class="error-text"
+            >
               <small>{{ getErrorMessage("bairro") }}</small>
             </ion-text>
           </ion-col>
 
           <ion-col size="6">
-            <ion-item>
-              <ion-label position="stacked">Cidade *</ion-label>
+            <ion-item class="custom-item">
+              <ion-label position="stacked">Cidade</ion-label>
               <ion-input
                 type="text"
                 formControlName="cidade"
@@ -173,37 +206,37 @@
                 [class.ion-touched]="clienteForm.get('cidade')?.touched"
               ></ion-input>
             </ion-item>
-            <ion-text color="danger" *ngIf="isFieldInvalid('cidade')">
+            <ion-text
+              color="danger"
+              *ngIf="isFieldInvalid('cidade')"
+              class="error-text"
+            >
               <small>{{ getErrorMessage("cidade") }}</small>
             </ion-text>
           </ion-col>
         </ion-row>
-      </ion-card-content>
-    </ion-card>
+      </div>
+    </div>
 
-    <ion-row class="ion-padding">
-      <ion-col size="6">
-        <ion-button
-          expand="block"
-          fill="outline"
-          color="medium"
-          (click)="onCancel()"
-        >
-          <ion-icon name="close" slot="start"></ion-icon>
-          Cancelar
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button
-          expand="block"
-          type="submit"
-          [disabled]="clienteForm.invalid"
-          color="primary"
-        >
-          <ion-icon name="save" slot="start"></ion-icon>
-          {{ isEdicao ? "Atualizar Dados" : "Salvar Dados" }}
-        </ion-button>
-      </ion-col>
-    </ion-row>
+    <div class="button-container">
+      <ion-button
+        expand="block"
+        fill="outline"
+        color="medium"
+        (click)="onCancel()"
+        class="cancel-button"
+      >
+        Cancelar
+      </ion-button>
+      <ion-button
+        expand="block"
+        type="submit"
+        [disabled]="clienteForm.invalid"
+        color="primary"
+        class="submit-button"
+      >
+        {{ isEdicao ? "Atualizar Dados" : "Salvar Dados" }}
+      </ion-button>
+    </div>
   </form>
 </ion-content>

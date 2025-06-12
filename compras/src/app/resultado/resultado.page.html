@@ -1,80 +1,92 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>Compra Realizada</ion-title>
+    <ion-title>Pedido Confirmado</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div class="success-container">
-    <ion-icon name="checkmark-circle" color="success" class="success-icon"></ion-icon>
-    <h2 class="success-title">Compra Realizada com Sucesso!</h2>
-    <p class="success-subtitle">Obrigado por sua compra. Seu pedido foi processado.</p>
+  <div class="confirmation-wrapper">
+    <ion-icon
+      name="checkmark-circle"
+      color="success"
+      class="confirmation-icon"
+    ></ion-icon>
+    <h2 class="confirmation-heading">Pedido Confirmado com Sucesso!</h2>
+    <p class="confirmation-text">
+      Agradecemos sua compra. Seu pedido foi processado com êxito.
+    </p>
   </div>
 
-
-  <ion-card class="resumo-card">
+  <ion-card class="order-summary-card">
     <ion-card-header>
       <ion-card-title>
-        <ion-icon name="list-outline"></ion-icon>
-        Resumo da Compra
+        <ion-icon name="receipt-outline"></ion-icon>
+        Detalhes do Pedido
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div class="resumo-item">
-        <span class="resumo-label">
-          <ion-icon name="cube-outline"></ion-icon>
-          Itens comprados:
+      <div class="summary-row">
+        <span class="summary-description">
+          <ion-icon name="bag-outline"></ion-icon>
+          Produtos adquiridos:
         </span>
-        <span class="resumo-valor">{{ dadosCompra.quantidadeItens }} {{ dadosCompra.quantidadeItens === 1 ? 'item' : 'itens' }}</span>
+        <span class="summary-amount"
+          >{{ dadosCompra.quantidadeItens }} {{ dadosCompra.quantidadeItens ===
+          1 ? 'produto' : 'produtos' }}</span
+        >
       </div>
 
-      <div class="resumo-item">
-        <span class="resumo-label">Subtotal dos produtos:</span>
-        <span class="resumo-valor">{{ formatarMoeda(dadosCompra.subtotal) }}</span>
+      <div class="summary-row">
+        <span class="summary-description">Subtotal dos produtos:</span>
+        <span class="summary-amount"
+          >{{ formatarMoeda(dadosCompra.subtotal) }}</span
+        >
       </div>
 
-      <div class="resumo-item economia" *ngIf="temEconomia">
-        <span class="resumo-label">
-          <ion-icon name="pricetag-outline" color="success"></ion-icon>
-          Você economizou:
+      <div class="summary-row discount-row" *ngIf="temEconomia">
+        <span class="summary-description">
+          <ion-icon name="gift-outline" color="success"></ion-icon>
+          Desconto aplicado:
         </span>
-        <span class="resumo-valor economia-valor">{{ formatarMoeda(dadosCompra.valorEconomizado!) }}</span>
+        <span class="summary-amount discount-amount"
+          >{{ formatarMoeda(dadosCompra.valorEconomizado!) }}</span
+        >
       </div>
 
-      <div class="resumo-item">
-        <span class="resumo-label">
-          <ion-icon name="car-outline"></ion-icon>
-          Frete:
+      <div class="summary-row">
+        <span class="summary-description">
+          <ion-icon name="bicycle-outline"></ion-icon>
+          Entrega:
         </span>
-        <span class="resumo-valor">{{ formatarMoeda(dadosCompra.frete) }}</span>
+        <span class="summary-amount"
+          >{{ formatarMoeda(dadosCompra.frete) }}</span
+        >
       </div>
 
-      <hr class="divisor">
+      <hr class="separator" />
 
-      <div class="resumo-item total">
-        <span class="resumo-label total-label">
-          <ion-icon name="cash-outline"></ion-icon>
-          <strong>Total Pago:</strong>
+      <div class="summary-row final-total">
+        <span class="summary-description total-description">
+          <ion-icon name="wallet-outline"></ion-icon>
+          <strong>Valor Total:</strong>
         </span>
-        <span class="resumo-valor total-valor">
+        <span class="summary-amount total-amount">
           <strong>{{ formatarMoeda(dadosCompra.total) }}</strong>
         </span>
       </div>
     </ion-card-content>
   </ion-card>
 
-
-  <div class="acoes-container">
-    <ion-button 
-      expand="block" 
-      color="primary" 
+  <div class="actions-wrapper">
+    <ion-button
+      expand="block"
+      color="primary"
       size="large"
       (click)="voltarParaHome()"
-      class="botao-principal">
-      <ion-icon name="home-outline" slot="start"></ion-icon>
-      Voltar ao Início
+      class="primary-button"
+    >
+      <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+      Continuar Comprando
     </ion-button>
-
-
   </div>
 </ion-content>

@@ -10,19 +10,21 @@ const routes: Routes = [
       {
         path: 'inicio',
         loadChildren: () =>
-          import('../inicio/inicio.module').then((m) => m.InicioPageModule),
+          import('../telasTabs/inicio/inicio.module').then(
+            (m) => m.InicioPageModule
+          ),
       },
       {
         path: 'minha-conta',
         loadChildren: () =>
-          import('../minha-conta/minha-conta.module').then(
+          import('../telasTabs/minha-conta/minha-conta.module').then(
             (m) => m.MinhaContaPageModule
           ),
       },
       {
         path: 'carrinho',
         loadChildren: () =>
-          import('../carrinho/carrinho.module').then(
+          import('../telasTabs/carrinho/carrinho.module').then(
             (m) => m.CarrinhoPageModule
           ),
       },

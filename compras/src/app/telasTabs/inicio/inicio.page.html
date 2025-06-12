@@ -1,0 +1,87 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="main-header">
+    <ion-title class="header-text">Cardápio Especial</ion-title>
+    <ion-buttons slot="end" *ngIf="quantidadeCarrinho > 0">
+      <ion-button class="basket-button">
+        <ion-icon name="basket"></ion-icon>
+        <ion-badge color="secondary" class="item-count"
+          >{{ quantidadeCarrinho }}</ion-badge
+        >
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="page-content">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" class="large-header">Cardápio Especial</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="items-grid">
+    <ion-card
+      *ngFor="let produto of produtos"
+      class="food-item"
+      (click)="verDetalhes(produto)"
+      button="true"
+    >
+      <div class="item-info">
+        <ion-badge class="reference-code" color="light"
+          >{{ produto.codigo }}</ion-badge
+        >
+        <h3 class="food-title">{{ produto.descricao }}</h3>
+      </div>
+
+      <div class="content-area">
+        <div class="price-box">
+          <div class="old-value">
+            <span class="from-text">Valor original:</span>
+            <span class="strike-price"
+              >{{ formatarMoeda(produto.valorNormal) }}</span
+            >
+          </div>
+
+          <div class="new-value">
+            <span class="promo-text">Preço promocional:</span>
+            <span class="current-price"
+              >{{ formatarMoeda(produto.valorComDesconto) }}</span
+            >
+            <ion-chip class="save-amount" color="primary">
+              {{ calcularDesconto(produto.valorNormal, produto.valorComDesconto)
+              }}% DESCONTO
+            </ion-chip>
+          </div>
+        </div>
+
+        <div class="item-details">
+          <p class="detail-text">{{ produto.detalhes }}</p>
+        </div>
+
+        <div class="button-group">
+          <ion-button
+            class="order-button"
+            expand="block"
+            fill="outline"
+            color="medium"
+            (click)="adicionarAoCarrinho(produto, $event)"
+          >
+            <ion-icon name="add-circle" slot="start"></ion-icon>
+            Incluir Pedido
+          </ion-button>
+
+          <ion-button
+            class="info-button"
+            expand="block"
+            fill="solid"
+            color="dark"
+            (click)="verDetalhes(produto)"
+          >
+            <ion-icon name="chevron-forward" slot="start"></ion-icon>
+            Detalhes
+          </ion-button>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+</ion-content>

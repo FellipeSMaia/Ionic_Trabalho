@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProdutoService } from '../services/produto.service';
-import { Produto } from '../models/produto.model';
-import { CarrinhoService } from '../services/carrinho.service';
+import { ProdutoService } from '../../services/produto.service';
+import { Produto } from '../../models/produto.model';
+import { CarrinhoService } from '../../services/carrinho.service';
 
 @Component({
   selector: 'app-inicio',
@@ -18,7 +18,7 @@ export class InicioPage implements OnInit {
     private produtoService: ProdutoService,
     private carrinhoService: CarrinhoService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.carregarProdutos();
@@ -30,7 +30,7 @@ export class InicioPage implements OnInit {
   }
 
   monitorarCarrinho() {
-    this.carrinhoService.carrinho$.subscribe(itens => {
+    this.carrinhoService.carrinho$.subscribe((itens) => {
       this.quantidadeCarrinho = this.carrinhoService.obterQuantidadeTotal();
     });
   }
@@ -42,7 +42,7 @@ export class InicioPage implements OnInit {
   formatarMoeda(valor: number): string {
     return valor.toLocaleString('pt-BR', {
       style: 'currency',
-      currency: 'BRL'
+      currency: 'BRL',
     });
   }
 
@@ -52,7 +52,7 @@ export class InicioPage implements OnInit {
 
   adicionarAoCarrinho(produto: Produto, event: Event) {
     event.stopPropagation();
-    
+
     this.carrinhoService.adicionarProduto(produto);
   }
 }

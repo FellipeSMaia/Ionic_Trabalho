@@ -1,0 +1,90 @@
+.spinner-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.no-items-state {
+  text-align: center;
+  padding: 60px 30px;
+}
+
+.placeholder-circle {
+  width: 80px;
+  height: 80px;
+  background-color: var(--ion-color-light);
+  border-radius: 50%;
+  margin: 0 auto 20px;
+}
+
+.discount-banner {
+  margin: 16px;
+  background: var(--ion-color-success);
+  color: white;
+}
+
+.pricing-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: var(--ion-color-medium);
+}
+
+.final-price {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.promo-tag {
+  background-color: var(--ion-color-danger);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.amount-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--ion-color-light);
+  padding: 5px 10px;
+  border-radius: 15px;
+  width: fit-content;
+}
+
+.item-count {
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ion-color-light);
+}
+
+.final-total {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid var(--ion-color-primary);
+}
+
+.bottom-actions {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bottom-spacer {
+  height: 20px;
+}

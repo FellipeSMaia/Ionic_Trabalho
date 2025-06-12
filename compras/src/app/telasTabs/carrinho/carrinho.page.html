@@ -1,0 +1,167 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> Lista de Produtos </ion-title>
+    <ion-buttons slot="end" *ngIf="!carrinhoVazio">
+      <ion-button fill="clear" (click)="limparCarrinho()"> Limpar </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Lista</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="carregando" class="spinner-section">
+    <ion-spinner name="bubbles"></ion-spinner>
+    <p>Aguarde, carregando produtos...</p>
+  </div>
+
+  <div *ngIf="!carregando && carrinhoVazio" class="no-items-state">
+    <div class="placeholder-circle"></div>
+    <h2>Nenhum produto selecionado</h2>
+    <p>Explore nossa loja e adicione itens à sua lista</p>
+    <ion-button expand="block" fill="solid" (click)="continuarComprando()">
+      Adicionar Produtos
+    </ion-button>
+  </div>
+
+  <div *ngIf="!carregando && !carrinhoVazio">
+    <ion-card *ngIf="temDesconto" class="discount-banner">
+      <ion-card-content>
+        <div class="discount-info">
+          <div class="discount-label">
+            <h3>Desconto Aplicado</h3>
+            <p class="economy-value">{{ formatarMoeda(valorEconomizado) }}</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-list class="products-list">
+      <ion-item-sliding *ngFor="let item of itensCarrinho; let i = index">
+        <ion-item
+          button
+          (click)="verDetalheProduto(item.produto)"
+          class="product-item"
+        >
+          <ion-label>
+            <h2>{{ item.produto.descricao }}</h2>
+            <p class="item-description">{{ item.produto.detalhes }}</p>
+
+            <div class="pricing-info">
+              <span
+                *ngIf="item.produto.valorNormal && item.produto.valorNormal > item.produto.valorComDesconto"
+                class="old-price"
+              >
+                {{ formatarMoeda(item.produto.valorNormal) }}
+              </span>
+              <span class="final-price">
+                {{ formatarMoeda(item.produto.valorComDesconto) }}
+              </span>
+              <span
+                *ngIf="item.produto.valorNormal && item.produto.valorNormal > item.produto.valorComDesconto"
+                class="promo-tag"
+              >
+                -{{ calcularDesconto(item.produto.valorNormal,
+                item.produto.valorComDesconto) }}%
+              </span>
+            </div>
+
+            <div class="amount-selector" (click)="$event.stopPropagation()">
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="diminuirQuantidade(i)"
+                class="decrease-btn"
+              >
+                -
+              </ion-button>
+
+              <span class="item-count">{{ item.quantidade }}</span>
+
+              <ion-button
+                fill="clear"
+                size="small"
+                (click)="aumentarQuantidade(i)"
+                class="increase-btn"
+              >
+                +
+              </ion-button>
+            </div>
+          </ion-label>
+
+          <ion-note slot="end" class="item-total">
+            {{ formatarMoeda(item.subtotal) }}
+          </ion-note>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="confirmarRemocaoItem(i)">
+            Remover
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-card class="checkout-summary">
+      <ion-card-header>
+        <ion-card-title> Detalhes da Compra </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="detail-row">
+          <span
+            >Subtotal ({{ quantidadeTotal }} {{ quantidadeTotal === 1 ? 'item' :
+            'itens' }})</span
+          >
+          <span>{{ formatarMoeda(subtotalCarrinho) }}</span>
+        </div>
+
+        <div class="detail-row">
+          <span>Entrega</span>
+          <span>{{ formatarMoeda(valorFrete) }}</span>
+        </div>
+
+        <div *ngIf="temDesconto" class="detail-row savings-row">
+          <span>Desconto Total</span>
+          <span class="savings-amount"
+            >-{{ formatarMoeda(valorEconomizado) }}</span
+          >
+        </div>
+
+        <ion-item lines="none" class="final-total">
+          <ion-label>
+            <h2><strong>Valor Final</strong></h2>
+          </ion-label>
+          <ion-note slot="end" class="grand-total">
+            <strong>{{ formatarMoeda(totalGeral) }}</strong>
+          </ion-note>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="bottom-actions">
+      <ion-button expand="block" fill="outline" (click)="continuarComprando()">
+        Continuar Comprando
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        fill="solid"
+        color="success"
+        (click)="finalizarCompra()"
+      >
+        Pagar - {{ formatarMoeda(totalGeral) }}
+      </ion-button>
+    </div>
+
+    <div class="bottom-spacer"></div>
+  </div>
+</ion-content>
